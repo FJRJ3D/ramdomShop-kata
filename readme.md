@@ -1,0 +1,1 @@
+# Kata Random Shop
