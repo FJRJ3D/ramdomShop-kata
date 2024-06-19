@@ -2,6 +2,8 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShoppingCartTest {
@@ -109,27 +111,27 @@ class ShoppingCartTest {
         assertEquals(shoppingCart.getTotalPrice(), 16.8);
 
     }
-    //TODO Añadir valores al metodo basePrice
-    /*@Test
+
+    @Test
     void calculatePriceForBlueFish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, null, false, "blue", null, "Paquito", null);
+        Product product = new Product(null, null, false, "blue", BigDecimal.valueOf(0), "Paquito", null);
 
         shoppingCart.addProduct(product);
 
-        assertEquals(shoppingCart.getTotalPrice(),(null));
+        assertEquals(shoppingCart.getTotalPrice(), 0.1);
 
     }
     @Test
     void calculatePriceForGoldFish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, null, false, "Gold", null, "Brillantin", null);
+        Product product = new Product(null, null, false, "gold", BigDecimal.valueOf(0), "Brillantin", null);
 
         shoppingCart.addProduct(product);
 
-        assertEquals(shoppingCart.getTotalPrice(), (null));
+        assertEquals(shoppingCart.getTotalPrice(), 0);
 
-    }*/
+    }
 }
