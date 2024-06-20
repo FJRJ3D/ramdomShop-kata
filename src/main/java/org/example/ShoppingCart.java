@@ -22,7 +22,14 @@ public class ShoppingCart {
     private BigDecimal calculatePrice(Product product) {
         if (product.getNumberOfLegs() != null) {
             if (product.getName().startsWith("The Spider:")){
-                return BigDecimal.valueOf(1.2 * product.getNumberOfLegs());
+
+                BigDecimal price = BigDecimal.valueOf(1.2 * product.getNumberOfLegs());
+
+                switch (product.getColor()) {
+                    case "red" -> price=price.add(BigDecimal.valueOf(2.0));
+                    case "gold" -> price=price.add(BigDecimal.valueOf(3.0));
+                }
+                return price;
             }
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
 
@@ -46,6 +53,7 @@ public class ShoppingCart {
                 case "red" -> BigDecimal.valueOf(3.5);
                 case "green" -> BigDecimal.valueOf(4.40);
                 case "black" -> BigDecimal.valueOf(6.80);
+                case "brown" -> BigDecimal.valueOf(2.0);
                 default -> BigDecimal.valueOf(2.0);
             };
         } else {

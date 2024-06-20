@@ -30,6 +30,17 @@ class ShoppingCartTest {
 
     }
     @Test
+    void test_calculate_price_for_magic_cards_brown() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(null, null, false, "brown", null, "Magic: The Gathering - Mage Brown", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 2.0);
+
+    }
+    @Test
     void test_calculate_price_for_magic_cards_default() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
@@ -74,6 +85,51 @@ class ShoppingCartTest {
         shoppingCart.addProduct(product);
 
         assertEquals(shoppingCart.getTotalPrice(), 6.80);
+
+    }
+    @Test
+    void test_if_the_blue_card_is_10_years_old_a_50_percent_reduction_is_applied_to_the_price() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(null, 10, false, "blue", null, "Magic: The Gathering - Mage Blue", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 2.5);
+
+    }
+    @Test
+    void test_if_the_red_card_is_10_years_old_a_50_percent_reduction_is_applied_to_the_price() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(null, 10, false, "red", null, "Magic: The Gathering - Mage Red", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 1.75);
+
+    }
+    @Test
+    void test_if_the_green_card_is_20_years_old_a_20_percent_is_increased_to_the_price() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(null, 20, false, "green", null, "Magic: The Gathering - Mage Green", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 5.28);
+
+    }
+
+    @Test
+    void test_if_the_black_card_is_20_years_old_a_20_percent_is_increased_to_the_price() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(null, 20, false, "black", null, "Magic: The Gathering - Mage Black", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 8.16);
 
     }
 
@@ -160,5 +216,23 @@ class ShoppingCartTest {
         shoppingCart.addProduct(product);
 
         assertEquals(shoppingCart.getTotalPrice(), 12.6);
+    }
+    @Test
+    void test_if_a_red_spider_is_stinky_a_50_percent_reduction_is_applied_to_the_price(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, true, "red",null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 5.8);
+    }
+    @Test
+    void test_if_a_golden_spider_is_stinky_a_50_percent_reduction_is_applied_to_the_price(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, true, "gold",null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 6.3);
     }
 }
