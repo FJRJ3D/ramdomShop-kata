@@ -23,7 +23,6 @@ public class ShoppingCart {
         if (product.getNumberOfLegs() != null) {
             if (product.getName().startsWith("The Spider:")){
                 return BigDecimal.valueOf(1.2 * product.getNumberOfLegs());
-
             }
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
 

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShoppingCartTest {
     @Test
-    void calculatePriceForMagicCards_red() {
+    void test_calculate_price_for_magic_cards_red() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "red", null, "Magic: The Gathering - Mage Red", null);
@@ -19,7 +19,7 @@ class ShoppingCartTest {
 
     }
     @Test
-    void calculatePriceForMagicCards_green() {
+    void test_calculate_price_for_magic_cards_green() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "green", null, "Magic: The Gathering - Mage Green", null);
@@ -30,7 +30,7 @@ class ShoppingCartTest {
 
     }
     @Test
-    void calculatePriceForMagicCards_default() {
+    void test_calculate_price_for_magic_cards_default() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false,"null" , null, "Magic: The Gathering - Mage", null);
@@ -42,7 +42,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_black_lotus() {
+    void test_calculate_price_for_magic_cards_black_lotus() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, null, null, "Magic: The Gathering - Black Lotus", null);
@@ -54,7 +54,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_blue() {
+    void test_calculate_price_for_magic_cards_blue() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "blue", null, "Magic: The Gathering - Mage Blue", null);
@@ -66,7 +66,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_black() {
+    void test_calculate_price_for_magic_cards_black() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "black", null, "Magic: The Gathering - Mage Black", null);
@@ -78,7 +78,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForWine() {
+    void test_calculate_price_for_wine() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, 5, false, null, null, "el tio juanillo", null);
@@ -90,7 +90,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForCheese() {
+    void test_calculate_price_for_cheese() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, 5, true, null, null, "French Camembert", null);
@@ -101,19 +101,7 @@ class ShoppingCartTest {
 
     }
     @Test
-    void calculatePriceForNumberOfLegs() {
-        ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(4, null, false, null, null, "Dog", null);
-
-        shoppingCart.addProduct(product);
-
-        assertEquals(shoppingCart.getTotalPrice(), 16.8);
-
-    }
-
-    @Test
-    void calculatePriceForBlueFish() {
+    void test_calculate_price_for_blue_fish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "blue", BigDecimal.valueOf(0), "Paquito", null);
@@ -124,7 +112,7 @@ class ShoppingCartTest {
 
     }
     @Test
-    void calculatePriceForGoldFish() {
+    void test_calculate_price_for_gold_fish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "gold", BigDecimal.valueOf(0), "Brillantin", null);
@@ -132,6 +120,17 @@ class ShoppingCartTest {
         shoppingCart.addProduct(product);
 
         assertEquals(shoppingCart.getTotalPrice(), 0);
+
+    }
+    @Test
+    void test_if_is_a_pet_the_price_is_4_2_by_legs() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        Product product = new Product(4, null, false, null, null, "Dog", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 16.8);
 
     }
 
@@ -145,7 +144,7 @@ class ShoppingCartTest {
         assertEquals(shoppingCart.getTotalPrice(), 9.6);
     }
     @Test
-    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_color_red(){
+    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_2_for_red_color(){
         ShoppingCart shoppingCart = new ShoppingCart();
         Product product = new Product(8, null, false, "red",null, "The Spider:", null);
 
@@ -154,7 +153,7 @@ class ShoppingCartTest {
         assertEquals(shoppingCart.getTotalPrice(), 11.6);
     }
     @Test
-    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_color_gold(){
+    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_2_for_gold_color(){
         ShoppingCart shoppingCart = new ShoppingCart();
         Product product = new Product(8, null, false, "gold",null, "The Spider:", null);
 
