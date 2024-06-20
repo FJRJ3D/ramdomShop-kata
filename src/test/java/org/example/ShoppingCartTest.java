@@ -235,4 +235,13 @@ class ShoppingCartTest {
 
         assertEquals(shoppingCart.getTotalPrice(), 6.3);
     }
+    @Test
+    void test_if_a_spider_is_stinky_a_50_percent_reduction_is_applied_to_the_price(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, true, null,null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 4.8);
+    }
 }
