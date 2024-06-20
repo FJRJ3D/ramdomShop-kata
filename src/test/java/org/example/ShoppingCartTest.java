@@ -193,7 +193,7 @@ class ShoppingCartTest {
     @Test
     void test_if_is_a_spider_the_price_is_1_2_by_legs(){
         ShoppingCart shoppingCart = new ShoppingCart();
-        Product product = new Product(8, null, false, "red",null, "The Spider:", null);
+        Product product = new Product(8, null, false, null,null, "The Spider:", null);
 
         shoppingCart.addProduct(product);
 

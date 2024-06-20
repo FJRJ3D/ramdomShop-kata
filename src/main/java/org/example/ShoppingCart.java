@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +26,18 @@ public class ShoppingCart {
 
                 BigDecimal price = BigDecimal.valueOf(1.2 * product.getNumberOfLegs());
 
-                switch (product.getColor()) {
-                    case "red" -> price=price.add(BigDecimal.valueOf(2.0));
-                    case "gold" -> price=price.add(BigDecimal.valueOf(3.0));
+                if (product.isStinky() && product.getColor()!=null){
+                    switch (product.getColor()) {
+                        case "red" -> price = price.add(BigDecimal.valueOf(2.0)).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
+                        case "gold" -> price = price.add(BigDecimal.valueOf(3.0)).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
+                    }
+                }else if (product.isStinky()){
+                    price=BigDecimal.valueOf(1.2 * product.getNumberOfLegs()).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
+                }else if(product.getColor()!=null) {
+                    switch (product.getColor()) {
+                        case "red" -> price = price.add(BigDecimal.valueOf(2.0));
+                        case "gold" -> price = price.add(BigDecimal.valueOf(3.0));
+                    }
                 }
                 return price;
             }
