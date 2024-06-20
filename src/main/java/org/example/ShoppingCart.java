@@ -21,7 +21,12 @@ public class ShoppingCart {
 
     private BigDecimal calculatePrice(Product product) {
         if (product.getNumberOfLegs() != null) {
+            if (product.getName().startsWith("The Spider:")){
+                return BigDecimal.valueOf(1.2 * product.getNumberOfLegs());
+
+            }
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
+
         } else if (product.getAge() != null) {
             if (product.isStinky()) {
                 return BigDecimal.valueOf(10.0* product.getAge());

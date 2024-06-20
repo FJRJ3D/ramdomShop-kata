@@ -134,4 +134,32 @@ class ShoppingCartTest {
         assertEquals(shoppingCart.getTotalPrice(), 0);
 
     }
+
+    @Test
+    void test_if_is_a_spider_the_price_is_1_2_by_legs(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, false, "red",null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 9.6);
+    }
+    @Test
+    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_color_red(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, false, "red",null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 11.6);
+    }
+    @Test
+    void test_if_is_a_spider_the_price_is_1_2_by_legs_and_color_gold(){
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(8, null, false, "gold",null, "The Spider:", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 12.6);
+    }
 }
