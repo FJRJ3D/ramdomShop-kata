@@ -1,7 +1,6 @@
 package org.example;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +27,11 @@ public class ShoppingCart {
 
                 if (product.isStinky() && product.getColor()!=null){
                     switch (product.getColor()) {
-                        case "red" -> price = price.add(BigDecimal.valueOf(2.0)).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
-                        case "gold" -> price = price.add(BigDecimal.valueOf(3.0)).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
+                        case "red" -> price = price.add(BigDecimal.valueOf(2.0)).divide(BigDecimal.valueOf(2.0));
+                        case "gold" -> price = price.add(BigDecimal.valueOf(3.0)).divide(BigDecimal.valueOf(2.0));
                     }
                 }else if (product.isStinky()){
-                    price=BigDecimal.valueOf(1.2 * product.getNumberOfLegs()).divide(BigDecimal.valueOf(2.0), RoundingMode.HALF_UP);
+                    price=BigDecimal.valueOf(1.2 * product.getNumberOfLegs()).divide(BigDecimal.valueOf(2.0));
                 }else if(product.getColor()!=null) {
                     switch (product.getColor()) {
                         case "red" -> price = price.add(BigDecimal.valueOf(2.0));
@@ -47,6 +46,19 @@ public class ShoppingCart {
             if (product.isStinky()) {
                 return BigDecimal.valueOf(10.0* product.getAge());
             } else {
+                if (product.getAge()!=null && product.getAge()==10) {
+                    return switch (product.getColor()) {
+                        case "blue" -> BigDecimal.valueOf(5.0).divide(BigDecimal.valueOf(2));
+                        case "red" -> BigDecimal.valueOf(3.5).divide(BigDecimal.valueOf(2));
+                        default -> BigDecimal.valueOf(2.0);
+                    };
+                } else if (product.getAge()!=null && product.getAge()==20) {
+                    return switch (product.getColor()) {
+                        case "green" -> BigDecimal.valueOf(4.40).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(4.40));
+                        case "black" -> BigDecimal.valueOf(6.80).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(6.80));
+                        default -> BigDecimal.valueOf(2.0);
+                    };
+                }
                 return BigDecimal.valueOf(20.0 * product.getAge());
             }
         } else if (product.getColor() != null && product.getBasePrice() != null) {
