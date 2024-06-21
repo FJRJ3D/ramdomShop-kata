@@ -137,7 +137,7 @@ class ShoppingCartTest {
     void test_calculate_price_for_wine() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, 5, false, null, null, "el tio juanillo", null);
+        Product product = new Product(null, 5, false, null, null, "The wine:", null);
 
         shoppingCart.addProduct(product);
 
@@ -149,7 +149,7 @@ class ShoppingCartTest {
     void test_calculate_price_for_cheese() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, 5, true, null, null, "French Camembert", null);
+        Product product = new Product(null, 5, true, null, null, "the cheese:", null);
 
         shoppingCart.addProduct(product);
 
@@ -160,29 +160,33 @@ class ShoppingCartTest {
     void test_calculate_price_for_blue_fish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, null, false, "blue", BigDecimal.valueOf(0), "Paquito", null);
+        BigDecimal bigDecimal = new BigDecimal(1);
+
+        Product product = new Product(null, null, false, "blue", bigDecimal, "The Fish: Blue", null);
 
         shoppingCart.addProduct(product);
 
-        assertEquals(shoppingCart.getTotalPrice(), 0.1);
+        assertEquals(shoppingCart.getTotalPrice(), 1.1);
 
     }
     @Test
     void test_calculate_price_for_gold_fish() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(null, null, false, "gold", BigDecimal.valueOf(0), "Brillantin", null);
+        BigDecimal bigDecimal = new BigDecimal(1);
+
+        Product product = new Product(null, null, false, "gold", bigDecimal, "The Fish: Gold", null);
 
         shoppingCart.addProduct(product);
 
-        assertEquals(shoppingCart.getTotalPrice(), 0);
+        assertEquals(shoppingCart.getTotalPrice(), 100);
 
     }
     @Test
     void test_if_is_a_pet_the_price_is_4_2_by_legs() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
-        Product product = new Product(4, null, false, null, null, "Dog", null);
+        Product product = new Product(4, null, false, null, null, "The Animal:", null);
 
         shoppingCart.addProduct(product);
 

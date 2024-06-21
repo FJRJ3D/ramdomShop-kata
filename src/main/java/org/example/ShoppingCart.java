@@ -20,6 +20,23 @@ public class ShoppingCart {
     }
 
     private BigDecimal calculatePrice(Product product) {
+        if (product.getName() != null && product.getName().startsWith("The Spider:")|| product.getName().startsWith("The Animal:")) {
+            return petOfLegs(product);
+        }
+        if (product.getName() != null && product.getName().startsWith("Magic: The Gathering")) {
+            return cards(product);
+        }
+        if (product.getColor() != null && product.getBasePrice() != null && product.getName().startsWith("The Fish")) {
+            return calculateFish(product);
+        }
+        if (product.getAge() != null) {
+            return gourmet(product);
+        }
+
+        return product.getSellPrice();
+    }
+
+    private BigDecimal petOfLegs(Product product){
         if (product.getNumberOfLegs() != null) {
             if (product.getName().startsWith("The Spider:")){
 
@@ -41,33 +58,28 @@ public class ShoppingCart {
                 return price;
             }
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
+        }
+        return null;
+    }
 
-        } else if (product.getAge() != null) {
-            if (product.isStinky()) {
-                return BigDecimal.valueOf(10.0* product.getAge());
-            } else {
-                if (product.getAge()!=null && product.getAge()==10) {
-                    return switch (product.getColor()) {
-                        case "blue" -> BigDecimal.valueOf(5.0).multiply(BigDecimal.valueOf(0.50));
-                        case "red" -> BigDecimal.valueOf(3.5).multiply(BigDecimal.valueOf(0.50));
-                        default -> BigDecimal.valueOf(2.0);
-                    };
-                } else if (product.getAge()!=null && product.getAge()==20) {
-                    return switch (product.getColor()) {
-                        case "green" -> BigDecimal.valueOf(4.40).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(4.40));
-                        case "black" -> BigDecimal.valueOf(6.80).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(6.80));
-                        default -> BigDecimal.valueOf(2.0);
-                    };
-                }
-                return BigDecimal.valueOf(20.0 * product.getAge());
+    private BigDecimal cards(Product product){
+            if (product.getAge() != null && product.getAge() >= 10 && product.getAge()<= 19) {
+                return switch (product.getColor()) {
+                    case "blue" -> BigDecimal.valueOf(5.0).multiply(BigDecimal.valueOf(0.50));
+                    case "red" -> BigDecimal.valueOf(3.5).multiply(BigDecimal.valueOf(0.50));
+                    default -> BigDecimal.valueOf(2.0);
+                };
             }
-        } else if (product.getColor() != null && product.getBasePrice() != null) {
-            return switch (product.getColor()) {
-                case "blue" -> product.getBasePrice().add(BigDecimal.valueOf(0.1));
-                case "gold" -> product.getBasePrice().multiply(BigDecimal.valueOf(100.0));
-                default -> product.getBasePrice();
-            };
-        } else if (product.getName().equals("Magic: The Gathering - Black Lotus")) {
+            if (product.getAge() != null && product.getAge() >= 20) {
+                return switch (product.getColor()) {
+                    case "green" ->
+                            BigDecimal.valueOf(4.40).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(4.40));
+                    case "black" ->
+                            BigDecimal.valueOf(6.80).multiply(BigDecimal.valueOf(0.20)).add(BigDecimal.valueOf(6.80));
+                    default -> BigDecimal.valueOf(2.0);
+                };
+            }
+        if (product.getName().equals("Magic: The Gathering - Black Lotus")) {
             return BigDecimal.valueOf(40000.0);
         } else if (product.getName().startsWith("Magic: The Gathering")) {
             return switch (product.getColor()) {
@@ -78,9 +90,36 @@ public class ShoppingCart {
                 case "brown" -> BigDecimal.valueOf(2.0);
                 default -> BigDecimal.valueOf(2.0);
             };
-        } else {
-            return product.getSellPrice();
         }
+
+        return null;
     }
 
-}
+    private BigDecimal gourmet(Product product){
+
+        if (product.getAge() != null) {
+            if (product.isStinky()) {
+                return BigDecimal.valueOf(10.0 * product.getAge());
+            } else {
+                return BigDecimal.valueOf(20.0 * product.getAge());
+            }
+        }
+        return null;
+    }
+
+    private BigDecimal calculateFish (Product product){
+
+        if (product.getColor() != null && product.getBasePrice() != null) {
+            return switch (product.getColor()) {
+                case "blue" -> product.getBasePrice().add(BigDecimal.valueOf(0.1));
+                case "gold" -> product.getBasePrice().multiply(BigDecimal.valueOf(100.0));
+                default -> product.getBasePrice();
+            };
+        }
+        return null;
+    }
+
+
+    }
+
+
